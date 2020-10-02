@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="game.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="img/logo.jpg">
+    <style>
+		#time{font-size: 20px;}
+	</style> 
 </head>
 <body>
     <div class="container">
@@ -26,6 +29,7 @@
               </div>
           
                 <div id="hud-item">
+                    <div><span id="time"></span></div>
                       <p class="hud-prefix" >
                           Score
                       </p>
@@ -54,6 +58,32 @@
         </div>
         
     </div>
+    <script>
+		function startTimer(duration, display) {
+		    var timer = duration, minutes, seconds;
+		    setInterval(function () {
+		        minutes = parseInt(timer / 60, 10)
+		        seconds = parseInt(timer % 60, 10);
+
+		        minutes = minutes < 10 ? "0" + minutes : minutes;
+		        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+		        display.textContent = minutes + ":" + seconds;
+
+		        if (--timer < 0) {
+		            timer = window.location.assign("end.html");;
+		        }
+		    }, 1000);
+				    	
+		}
+
+		window.onload = function () {
+		    var fiveMinutes = 60*20
+		    ,
+		        display = document.querySelector('#time');
+		    startTimer(fiveMinutes, display);
+		};
+	</script>
     <script src="game.js"></script>
 </body>
 </html>
